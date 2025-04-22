@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eagle Auto Air</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: white;
+      color: #003366;
+    }
+    header {
+      background-color: #003366;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    header img {
+      width: 80px;
+      vertical-align: middle;
+    }
+    nav {
+      background-color: #cc0000;
+      padding: 0.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .hero {
+      background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://cdn.pixabay.com/photo/2017/08/01/08/29/air-conditioning-2569866_1280.jpg') no-repeat center center/cover;
+      color: white;
+      padding: 4rem 2rem;
+      text-align: center;
+    }
+    .hero h1 {
+      color: white;
+      font-size: 2.5rem;
+    }
+    .section {
+      padding: 2rem;
+    }
+    .products, .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+    .card img {
+      max-width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+    button {
+      background-color: #cc0000;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #a30000;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    footer {
+      background-color: #003366;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 2rem;
+    }
+    #cartModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.7);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+    #cartContent {
+      background: white;
+      padding: 2rem;
+      border-radius: 8px;
+      max-width: 400px;
+      width: 90%;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/e/e6/Eagle_symbol_gold.png" alt="Eagle Auto Air Logo">
+    <h1>Eagle Auto Air</h1>
+    <p>Keeping You Cool Since 1960 — Auto A/C Parts & Repair You Can Trust</p>
+  </header>
+  <nav>
+    <a href="#shop">Shop</a>
+    <a href="#services">Services</a>
+    <a href="#about">About</a>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a href="#" onclick="openCart()">?? View Cart</a>
+  </nav>
+
+  <section class="hero">
+    <h1>Top-Quality Auto A/C Parts & Expert Repair</h1>
+    <p>Serving Miami & Broward County - Family-Owned Since 1960</p>
+    <button onclick="location.href='#shop'">Shop Parts</button>
+    <button onclick="location.href='#services'">Book a Repair</button>
+  </section>
+
+  <section class="section" id="shop">
+    <h2>Featured Products</h2>
+    <div class="products">
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2016/10/27/22/51/car-1774853_1280.jpg" alt="A/C Compressor">
+        <h3>A/C Compressor</h3>
+        <p>$129.99</p>
+        <button onclick="addToCart('A/C Compressor', 129.99)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2016/10/20/20/52/car-engine-1751757_1280.jpg" alt="Condenser">
+        <h3>Condenser</h3>
+        <p>$89.99</p>
+        <button onclick="addToCart('Condenser', 89.99)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2020/02/06/10/58/auto-4825805_1280.jpg" alt="Repair Kit">
+        <h3>A/C Repair Kit</h3>
+        <p>$159.99</p>
+        <button onclick="addToCart('A/C Repair Kit', 159.99)">Add to Cart</button>
+      </div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2017/09/04/18/42/auto-2712755_1280.jpg" alt="A/C Hose">
+        <h3>A/C Hose Set</h3>
+        <p>$49.99</p>
+        <button onclick="addToCart('A/C Hose Set', 49.99)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <h2>Our Repair Services</h2>
+    <div class="services">
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2016/10/20/20/52/car-engine-1751757_1280.jpg" alt="Diagnostics">
+        <h3>A/C Diagnostics</h3>
+        <p>Mobile diagnostic service to identify A/C issues.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2017/03/13/12/34/auto-2138972_1280.jpg" alt="System Recharge">
+        <h3>System Recharge</h3>
+        <p>Get your A/C blowing cold air again fast.</p>
+      </div>
+      <div class="card">
+        <img src="https://cdn.pixabay.com/photo/2017/08/09/21/33/repair-2610292_1280.jpg" alt="Compressor Replacement">
+        <h3>Compressor Replacement</h3>
+        <p>Installation of new or rebuilt compressors.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="about">
+    <h2>About Us</h2>
+    <p>Eagle Auto Air is a family-owned business proudly serving South Florida since 1960. Specializing in A/C parts and repair, we bring generations of trusted service to every customer. Our experienced team ensures reliable repairs and quality parts for every make and model.</p>
+  </section>
+
+  <section class="section" id="faq">
+    <h2>Frequently Asked Questions</h2>
+    <ul>
+      <li><strong>What’s your return policy?</strong> 30 days with receipt, unused parts only.</li>
+      <li><strong>Do you ship nationwide?</strong> Yes, we offer fast nationwide shipping.</li>
+      <li><strong>What payments do you accept?</strong> PayPal, Zelle, Apple Pay, credit card, and cash.</li>
+      <li><strong>How can I make sure a part fits my car?</strong> Use our vehicle selector tool or contact our support team.</li>
+    </ul>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: eagleautoair@gmail.com</p>
+    <form>
+      <input type="text" placeholder="Your Name" required />
+      <input type="email" placeholder="Your Email" required />
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Eagle Auto Air. All rights reserved.</p>
+    <p>Payments Accepted: PayPal | Zelle | Apple Pay | Credit Card | Cash</p>
+    <p>Follow us on social media: Facebook | Instagram | YouTube</p>
+  </footer>
+
+  <div id="cartModal">
+    <div id="cartContent">
+      <h2>Your Cart</h2>
+      <ul id="cartItems"></ul>
+      <p id="cartTotal"></p>
+      <button onclick="closeCart()">Close</button>
+    </div>
+  </div>
+
+  <script>
+    const cart = [];
+    function addToCart(name, price) {
+      cart.push({ name, price });
+      alert(`${name} added to cart!`);
+    }
+    function openCart() {
+      const cartItems = document.getElementById('cartItems');
+      const cartTotal = document.getElementById('cartTotal');
+      cartItems.innerHTML = '';
+      let total = 0;
+      cart.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+        cartItems.appendChild(li);
+        total += item.price;
+      });
+      cartTotal.textContent = `Total: $${total.toFixed(2)}`;
+      document.getElementById('cartModal').style.display = 'flex';
+    }
+    function closeCart() {
+      document.getElementById('cartModal').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
